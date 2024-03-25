@@ -1,0 +1,68 @@
+{extends file="../templates/main.html"}
+{block name=content}
+<header class="major">
+	<h2>Kalkulator kredytowy</h2>
+	<p>Uzupełnij pola, pole oprocentowania uzupełnij samą liczbą bez znaku "%".</p>
+</header>
+<section>
+	<form method="post" action="#">
+		<div class="row gtr-uniform gtr-50">
+			<div class="col-6 col-12-xsmall">
+				<input type="text" name="kwota" id="id_kwota" value="{$form['kwota']}" placeholder="Kwota" />
+			</div>
+			<div class="col-6 col-12-xsmall">
+				<input type="text" name="liczbaLat" id="id_liczbaLat" value="{$form['lata']}" placeholder="Lata" />
+			</div>
+			<div class="col-6 col-12-xsmall">
+				<input type="text" name="procent" id="id_procent" value="{$form['proc']}" placeholder="Oprocentowanie" />
+			</div>								
+			<div class="col-12">
+				<ul class="actions">
+					<li><input type="submit" value="Oblicz" class="primary" /></li>
+				</ul>
+			</div>
+		</div>
+	</form>
+</section>
+<div class="messages">
+{if isset($error)}
+	{if count($error) > 0} 
+		<h4>Wystąpiły błędy: </h4>
+		<ol class="err">
+		{foreach  $error as $msg}
+		{strip}
+			<li>{$msg}</li>
+		{/strip}
+		{/foreach}
+		</ol>
+	{/if}
+{/if}
+{if isset($infos)}
+	{if count($infos) > 0} 
+		<h4>Informacje: </h4>
+		<ol class="inf">
+		{foreach  $infos as $msg}
+		{strip}
+			<li>{$msg}</li>
+		{/strip}
+		{/foreach}
+		</ol>
+	{/if}
+{/if}
+{if isset($wynik)}
+    <h4>Wynik</h4>
+    <p class="res">
+        Miesięczna rata wynosi: {$wynik|round:2} zł.
+    </p>
+{/if}
+</div>
+{/block}
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.dropotron.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+</html>
